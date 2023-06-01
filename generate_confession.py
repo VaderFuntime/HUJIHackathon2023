@@ -1,3 +1,5 @@
+import random
+
 import openai
 import translator
 
@@ -19,12 +21,18 @@ def generate_confession_english(max_tokens, temperature):
 
 def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4):
     eng = generate_confession_english(max_tokens=max_tokens, temperature=temperature)
-    return eng, translator.eng_to_heb(eng)
+    heb = translator.eng_to_heb(eng)
+    return eng, add_random_number(heb)
 
 
 def trim_to_last_dot(conf: str)-> str:
     return conf[:conf.rfind('.') + 1]
 
+def add_random_number(conf: str) -> str:
+    # sample a random number between 1 and 40000
+    random_number = str(random.randint(1, 40000))
+    # add the random number to the confession
+    return f"#{random_number}\n{conf}"
 
 if __name__ == '__main__':
     print(f"hebrew: \n{generate_confession_eng_heb(max_tokens=200)}")
