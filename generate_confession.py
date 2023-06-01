@@ -17,7 +17,7 @@ def generate_confession_english(max_tokens, temperature):
     return trim_to_last_dot(res.choices[0]['text'])
 
 
-def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4) -> tuple[str, str]:
+def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4):
     eng = generate_confession_english(max_tokens=max_tokens, temperature=temperature)
     return eng, translator.eng_to_heb(eng)
 

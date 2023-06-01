@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 from PIL import Image
 from io import BytesIO
+import conf_and_img_generator
 
 # Display the header with dark gray background and white text
 st.markdown(
@@ -24,11 +25,10 @@ st.markdown(
 def process_button_click():
     # Call your function here to get the URL and text
     # Replace the following placeholders with the actual URL and text
-    image_url = "http://www.google.com.au/images/nav_logo7.png"  # Replace with the actual image URL
-    text = "Text"  # Replace with the actual text
+    conf, url = conf_and_img_generator.generate_conf_and_img()
 
     # Download the image from the URL
-    response = requests.get(image_url)
+    response = requests.get(url)
     image = Image.open(BytesIO(response.content))
 
     # Display the image and text in two columns
@@ -36,7 +36,7 @@ def process_button_click():
     with col1:
         st.image(image, caption="Image", use_column_width=True)
     with col2:
-        st.write(text)
+        st.write(conf)
 
 # Display the form with a button and an initial image
 button_alignment_style = """
