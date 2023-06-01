@@ -16,10 +16,10 @@ def generate_confession_english(max_tokens, temperature):
     return res.choices[0]['text']
 
 
-def generate_confession_hebrew(max_tokens=100, temperature=0.4):
-    return translator.eng_to_heb(
-        generate_confession_english(max_tokens=max_tokens, temperature=temperature))
+def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4) -> tuple[str, str]:
+    eng = generate_confession_english(max_tokens=max_tokens, temperature=temperature)
+    return eng, translator.eng_to_heb(eng)
 
 
 if __name__ == '__main__':
-    print(f"hebrew: \n{generate_confession_hebrew(max_tokens=200)}")
+    print(f"hebrew: \n{generate_confession_eng_heb(max_tokens=200)}")
