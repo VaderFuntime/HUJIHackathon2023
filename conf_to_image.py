@@ -7,7 +7,7 @@ openai.Model.list()
 
 
 def generate_prompt(text):
-    return f"Describe, shortly, in one line, visually, an image depicting the following text:" \
+    return f"Describe, shortly, in one line, visually, an image depicting the following text (Only describe visual elements):" \
            f":\n\"{text}\"\nDescription:"
 
 
@@ -22,7 +22,8 @@ def conf_to_scene_description(text):
 
 
 def image_from_dalle(prompt, style='cute cartoon'):
-    prompt += f". {style} style. high quality."
+    prompt += f". high quality. trending on artstation."
+    prompt = "illustration of " + prompt
     print(prompt)
     response = openai.Image.create(prompt=prompt,
                                    n=1,
