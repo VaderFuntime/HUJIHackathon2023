@@ -12,4 +12,4 @@ def translate_csv(csv_path: str):
 
 
 if __name__ == '__main__':
-    translate_csv('confessions\ConfessionPosts500.csv')
+    translate_csv('confessions\improved_confessions_1500.csv')

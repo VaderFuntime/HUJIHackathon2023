@@ -22,9 +22,9 @@ def conf_to_scene_description(text):
 
 
 def image_from_dalle(prompt, style='cute cartoon'):
-    prompt += f". high quality. trending on artstation."
+    prompt += f". digital art. high quality. trending on artstation."
     prompt = "illustration of " + prompt
-    print(prompt)
+    print(f"DALL-E PROMPT: {prompt}")
     response = openai.Image.create(prompt=prompt,
                                    n=1,
                                    size="1024x1024")

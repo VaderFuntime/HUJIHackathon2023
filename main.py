@@ -7,10 +7,11 @@ import conf_and_img_generator
 def process_button_click():
     # Call your function here to get the URL and text
     # Replace the following placeholders with the actual URL and text
-    conf, url = conf_and_img_generator.generate_conf_and_img()
+
+    conf, img_url = conf_and_img_generator.generate_conf_and_img()
 
     # Download the image from the URL
-    response = requests.get(url)
+    response = requests.get(img_url)
     image = Image.open(BytesIO(response.content))
 
     # Display the image and text in two columns
@@ -49,7 +50,7 @@ st.markdown(
 # Display the form with a button and an initial image
 initial_image_url = "https://media.istockphoto.com/id/1049784606/photo/confession-of-sins-room-inside-of-jesuitenkirche-church.jpg?s=612x612&w=0&k=20&c=i7NGtaIeRKo16_B2m1jOj7YuNqm7wr2vLlRUE56r41A="
 
-submitted = st.button("תתוודה", key="submit_button")
+submitted = st.button("תתוודא", key="submit_button")
 st.markdown('<style>div.stButton > button{width: 100%;}</style>', unsafe_allow_html=True)
 
 if submitted:
