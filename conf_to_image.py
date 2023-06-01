@@ -1,26 +1,32 @@
 import openai
 
-openai.api_key="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"
+openai.api_key = "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"
 genres = ['Realism', 'Impressionism', 'Cubism', 'Abstract Expressionism',
           'Surrealism', 'Pop Art', 'Minimalism', 'Modern art']
 openai.Model.list()
 
-def generate_prompt(text):
-        return f"Describe the following text as a one line short visual " \
-               f"description of a scene:\n\"{text}\"\nDescription:"
 
-def generate_response(text):
+def generate_prompt(text):
+    return f"Describe, shortly, in one line, visually, an image depicting the following text:" \
+           f":\n\"{text}\"\nDescription:"
+
+
+def conf_to_scene_description(text):
     response = openai.Completion.create(
         engine="text-davinci-003",
         prompt=generate_prompt(text),
         top_p=1,
+        max_tokens=40
     )
     return response.choices[0].text.strip()
 
-def image_from_dalle(prompt):
+
+def image_from_dalle(prompt, style='cute cartoon'):
+    prompt += f". {style} style. high quality."
+    print(prompt)
     response = openai.Image.create(prompt=prompt,
                                    n=1,
-                                size="1024x1024")
+                                   size="1024x1024")
     return response['data'][0]['url']
 
 
@@ -31,15 +37,13 @@ def create_image(conf):
     :param conf: original confession text in english
     :return: url of dall e image
     """
-    prompt = generate_response(conf)
+    prompt = conf_to_scene_description(conf)
     return image_from_dalle(prompt)
 
-
-    
 
 # print('32632#. Again the pride parade and again my friends are trying to force me to go. \"It is your duty as a gay person to fight for your rights, and you have to show solidarity with your community.\" What are you talking about, what community? Just because I have a slightly different sexual orientation do I belong to the community? Hello, this is not my whole identity. I have more in common with straight people. So no thanks, I won\'t go to the parade, instead I\'ll go play basketball and maybe eat a hamburger afterwards. And yes, I\'ll add chips to the dish, thanks.')
 # print(generate_response('32632#. Again the pride parade and again my friends are trying to force me to go. \"It is your duty as a gay person to fight for your rights, and you have to show solidarity with your community.\" What are you talking about, what community? Just because I have a slightly different sexual orientation do I belong to the community? Hello, this is not my whole identity. I have more in common with straight people. So no thanks, I won\'t go to the parade, instead I\'ll go play basketball and maybe eat a hamburger afterwards. And yes, I\'ll add chips to the dish, thanks.'))
 if __name__ == '__main__':
-    conf = '32632#. Again the pride parade and again my friends are trying to force me to go. \"It is your duty as a gay person to fight for your rights, and you have to show solidarity with your community.\" What are you talking about, what community? Just because I have a slightly different sexual orientation do I belong to the community? Hello, this is not my whole identity. I have more in common with straight people. So no thanks, I won\'t go to the parade, instead I\'ll go play basketball and maybe eat a hamburger afterwards. And yes, I\'ll add chips to the dish, thanks.'
-    prompt = generate_response(conf)
-    print(image_from_dalle(prompt))
+    conf = "The biggest mess that happened to me on campus I put a pad in my pocket and went up the stairs one by one towards the exit when I got to the bathroom I realized it wasn't on me I just didn't realize where it fell until I went back to the "
+    # print(conf_to_scene_description(conf))
+    print(image_from_dalle("A person in a state of confusion looking back and down the staircase in search of a fallen pad."))

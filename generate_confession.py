@@ -10,15 +10,20 @@ def generate_confession_english(max_tokens, temperature):
         model=MODEL_NAME,
         prompt="#335",
         max_tokens=max_tokens,
-        temperature=temperature
+        temperature=temperature,
+        presence_penalty=1,
+        frequency_penalty=0.5,
     )
-    print(f"english: \n{res.choices[0]['text']}")
-    return res.choices[0]['text']
+    return trim_to_last_dot(res.choices[0]['text'])
 
 
 def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4) -> tuple[str, str]:
     eng = generate_confession_english(max_tokens=max_tokens, temperature=temperature)
     return eng, translator.eng_to_heb(eng)
+
+
+def trim_to_last_dot(conf: str)-> str:
+    return conf[:conf.rfind('.') + 1]
 
 
 if __name__ == '__main__':
