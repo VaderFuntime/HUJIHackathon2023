@@ -50,7 +50,7 @@ st.markdown(
 # Display the form with a button and an initial image
 initial_image_url = "https://media.istockphoto.com/id/1049784606/photo/confession-of-sins-room-inside-of-jesuitenkirche-church.jpg?s=612x612&w=0&k=20&c=i7NGtaIeRKo16_B2m1jOj7YuNqm7wr2vLlRUE56r41A="
 
-submitted = st.button("תתוודא", key="submit_button")
+submitted = st.button("תתוודה", key="submit_button")
 st.markdown('<style>div.stButton > button{width: 100%;}</style>', unsafe_allow_html=True)
 
 if submitted:
