@@ -38,7 +38,7 @@ st.markdown(
     
     <div style="background-color: #303030; padding: 10px;">
         <h1 style="color: white; text-align: center; font-size: 48px; font-weight: bold;">
-            תא וידויים
+            HujiPT
         </h1>
     </div>
     """,
@@ -48,9 +48,9 @@ st.markdown(
 
 
 # Display the form with a button and an initial image
-initial_image_url = "https://media.istockphoto.com/id/1049784606/photo/confession-of-sins-room-inside-of-jesuitenkirche-church.jpg?s=612x612&w=0&k=20&c=i7NGtaIeRKo16_B2m1jOj7YuNqm7wr2vLlRUE56r41A="
+initial_image_url = "https://i.ibb.co/yhF1DrT/logo.png"
 
-submitted = st.button("תתוודה", key="submit_button")
+submitted = st.button("מה אומר", key="submit_button")
 st.markdown('<style>div.stButton > button{width: 100%;}</style>', unsafe_allow_html=True)
 
 if submitted:

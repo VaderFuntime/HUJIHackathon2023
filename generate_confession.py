@@ -18,7 +18,7 @@ def generate_confession_english(max_tokens, temperature):
         presence_penalty=1,
         frequency_penalty=0.5,
     )
-    return trim_to_last_dot(res.choices[0]['text'])
+    return trim_to_last_dot(res.choices[0]['text'])[2:]
 
 
 def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4):
@@ -27,14 +27,16 @@ def generate_confession_eng_heb(max_tokens: int = 100, temperature: float = 0.4)
     return eng, add_random_number(heb)
 
 
-def trim_to_last_dot(conf: str)-> str:
+def trim_to_last_dot(conf: str) -> str:
     return conf[:conf.rfind('.') + 1]
+
 
 def add_random_number(conf: str) -> str:
     # sample a random number between 1 and 40000
     random_number = str(random.randint(1, 40000))
     # add the random number to the confession
     return f"#{random_number}\n{conf}"
+
 
 if __name__ == '__main__':
     print(f"hebrew: \n{generate_confession_eng_heb(max_tokens=200, temperature=1)}")
