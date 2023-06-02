@@ -4,6 +4,7 @@ from PIL import Image
 from io import BytesIO
 import conf_and_img_generator
 
+
 def process_button_click():
     # Call your function here to get the URL and text
     # Replace the following placeholders with the actual URL and text
@@ -21,6 +22,7 @@ def process_button_click():
     with col2:
         st.markdown(f'<div style="text-align: right;">{conf}</div>', unsafe_allow_html=True)
 
+
 # Display the header with dark gray background and white text
 st.markdown(
     """
@@ -29,14 +31,14 @@ st.markdown(
         display: flex;
         justify-content: center;
     }
-    
+
     .button-container {
         display: flex;
         justify-content: center;
     }
     </style>
-    
-    <div style="background-color: #303030; padding: 10px;">
+
+    <div style="background-color: #5edbbe ; padding: 10px;">
         <h1 style="color: white; text-align: center; font-size: 48px; font-weight: bold;">
             HujiPT
         </h1>
@@ -45,13 +47,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
 # Display the form with a button and an initial image
 initial_image_url = "https://i.ibb.co/yhF1DrT/logo.png"
 
 submitted = st.button("מה אומר", key="submit_button")
-st.markdown('<style>div.stButton > button{width: 100%;}</style>', unsafe_allow_html=True)
+st.markdown('<style>div.stButton > button{width: 100%; margin-top:10px}</style>', unsafe_allow_html=True)
 
 if submitted:
     process_button_click()
